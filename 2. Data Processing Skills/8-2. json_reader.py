@@ -43,3 +43,34 @@ print('json_data[\'object\'][\'str2\']={0}'.format(json_data2['str2']))
 json_array = json_data['num_array']
 for n in json_array:
     print('n={0}'.format(n))
+
+# 'unknown_key'를 읽는 잘못된 방법
+""" 
+unknown_value = json_data['unknown_key']
+print('unknown_value={0}'.format(unknown_value))
+"""
+# 오류 : 예외발생
+# 해결책<2> : try-catch 구문으로 제어, 사용하는 모든 키가 존재하는지 검사
+
+# 'unknown_key'를 읽는 올바른 방법 1
+try:
+    unknown_value = json_data['unknown_key']
+    print('unknown_value={0}'.format(unknown_value))
+except KeyError:
+    print('\'unknwon_key\'는 존재하지 않습니다')
+
+# 'unknown_key'를 읽는 올바른 방법 2
+if 'unknwon_key' in json_data:
+    unknown_value = json_data['unknown_key']
+    print('unknown_value={0}'.format(unknown_value))
+else:
+    print('\'unknown_key\'는 존재하지 않습니다')
+
+# 키 검사할 때, 키 존재 여부 + 키에 대응하는 값 올바른 형태인지 함께 검사
+# -> assert 사용하여 JSON 메시지가 올바른 형태인지, 필요한 키가 모두 있는지 검사
+# assert : 디버깅 환경에서만 동작
+
+# float_value가 3 이상 3.2 미만인지 검사하는 코드
+assert(3 <= float_value < 3.2)
+# str_value 가 null이 아니고 문자열 길이가 0 이상인지 검사하는 코드
+assert(str_value and len(str_value) > 0)
