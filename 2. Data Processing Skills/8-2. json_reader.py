@@ -34,3 +34,12 @@ print('num_value={0}'.format(num_value))
 print('float_value={0}'.format(float_value))
 print('str_value={0}'.format(str_value))
 print('empty_value={0}'.format(empty_value))
+
+# 객체 안 객체 접근
+json_data2 = json_data['object']
+print('json_data[\'object\'][\'str2\']={0}'.format(json_data2['str2']))
+
+# 배열 접근
+json_array = json_data['num_array']
+for n in json_array:
+    print('n={0}'.format(n))
